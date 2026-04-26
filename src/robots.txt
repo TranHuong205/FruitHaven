@@ -1,0 +1,13 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Chặn các trang riêng tư và nhạy cảm
+Disallow: /admin/
+Disallow: /profile/
+Disallow: /checkout/
+Disallow: /access-denied
+Disallow: /login
+Disallow: /register
+
+Sitemap: https://fruithaven.vn/sitemap.xml

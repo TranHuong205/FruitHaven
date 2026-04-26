@@ -1,0 +1,147 @@
+{
+  "entities": {
+    "Fruit": {
+      "title": "Fruit Product",
+      "description": "Details of a fruit product in the shop",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "price": { "type": "number" },
+        "image": { "type": "string" },
+        "description": { "type": "string" },
+        "unit": { "type": "string" },
+        "color": { "type": "string" },
+        "stock": { "type": "number" },
+        "salePrice": { "type": "number" },
+        "flashSaleExpiry": { "type": "string" }
+      },
+      "required": ["name", "price", "category"]
+    },
+    "Order": {
+      "title": "Customer Order",
+      "description": "Details of a customer purchase",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerName": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "total": { "type": "number" },
+        "address": { "type": "string" },
+        "paymentMethod": { "type": "string" },
+        "status": { "type": "string" },
+        "created_at": { "type": "string" },
+        "carrier": { "type": "string" },
+        "trackingNumber": { "type": "string" }
+      },
+      "required": ["customerName", "email", "total", "status"]
+    },
+    "News": {
+      "title": "News Article",
+      "description": "A blog post or news item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "content": { "type": "string" },
+        "date": { "type": "string" },
+        "image": { "type": "string" },
+        "author": { "type": "string" },
+        "category": { "type": "string" }
+      },
+      "required": ["title", "content"]
+    },
+    "Coupon": {
+      "title": "Discount Coupon",
+      "description": "Promo code for discounts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "discountType": { "type": "string" },
+        "value": { "type": "number" },
+        "minOrder": { "type": "number" },
+        "description": { "type": "string" },
+        "expiry": { "type": "string" }
+      },
+      "required": ["code", "discountType", "value"]
+    },
+    "User": {
+      "title": "User Profile",
+      "description": "User account information",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "address": { "type": "string" },
+        "avatar": { "type": "string" }
+      },
+      "required": ["name", "email"]
+    },
+    "Bundle": {
+      "title": "Saving Combo",
+      "description": "A package of multiple products at a discounted price",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "productIds": { "type": "array", "items": { "type": "string" } },
+        "price": { "type": "number" },
+        "originalPrice": { "type": "number" },
+        "image": { "type": "string" },
+        "description": { "type": "string" },
+        "unit": { "type": "string" },
+        "color": { "type": "string" },
+        "isBundle": { "type": "boolean" }
+      },
+      "required": ["name", "price", "productIds"]
+    },
+    "ChatMessage": {
+      "title": "Chat Message",
+      "description": "A single message in a support chat",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "assistant"] },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["role", "text", "timestamp"]
+    }
+  },
+  "firestore": {
+    "chats/{sessionId}/messages/{messageId}": {
+      "schema": "ChatMessage",
+      "description": "Messages within a specific chat session"
+    },
+    "fruits/{fruitId}": {
+      "schema": "Fruit",
+      "description": "Collection of fruit products"
+    },
+    "orders/{orderId}": {
+      "schema": "Order",
+      "description": "Collection of customer orders"
+    },
+    "news/{newsId}": {
+      "schema": "News",
+      "description": "Collection of news items"
+    },
+    "coupons/{couponId}": {
+      "schema": "Coupon",
+      "description": "Collection of promo codes"
+    },
+    "users/{userId}": {
+      "schema": "User",
+      "description": "Collection of user profiles"
+    },
+    "bundles/{bundleId}": {
+      "schema": "Bundle",
+      "description": "Collection of saving combos"
+    }
+  }
+}
